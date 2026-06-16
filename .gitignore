@@ -1,0 +1,45 @@
+# IntelliJ IDEA
+.idea/
+**/.idea/
+*.iml
+
+
+# Spring Boot / Maven
+backend/target/
+**/target/
+
+*.log
+logs/
+
+
+# Environment Variables / Secrets
+.env
+.env.*
+!.env.example
+
+
+# Node / React / Vite
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+**/node_modules/
+**/dist/
+
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+
+# VS Code (if used)
+.vscode/
+
+
+# Coverage & Testing
+coverage/
+
+
+# Temporary files
+*.tmp
+*.temp

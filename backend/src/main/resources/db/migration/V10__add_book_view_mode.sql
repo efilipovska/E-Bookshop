@@ -1,0 +1,1 @@
+ALTER TABLE users ADD COLUMN book_view_mode VARCHAR(20) DEFAULT 'CARD';
