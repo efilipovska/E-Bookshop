@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    image: postgres:17.4
+    container_name: ebookshop-db
+
+    environment:
+      POSTGRES_DB: emtlab
+      POSTGRES_USER: emtlab
+      POSTGRES_PASSWORD: emtlab
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - emtlab_pgdata:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+
+    container_name: ebookshop-backend
+
+    depends_on:
+      - postgres
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/emtlab
+      SPRING_DATASOURCE_USERNAME: emtlab
+      SPRING_DATASOURCE_PASSWORD: emtlab
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+
+    container_name: ebookshop-frontend
+
+    depends_on:
+      - backend
+
+    ports:
+      - "3000:80"
+
+volumes:
+  emtlab_pgdata:
+    external: true
